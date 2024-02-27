@@ -1,0 +1,31 @@
+Tablas SQL utiliadas para el proyecto de chat en el Grupo 4
+
+
+CREATE TABLE [dbo].[Usuarios] (
+    [Id]            INT             IDENTITY (1, 1) NOT NULL,
+    [Nombre]        NVARCHAR (100)  NULL,
+    [Email]         NVARCHAR (100)  NOT NULL,
+    [Password]      NVARCHAR (500)  NOT NULL,
+    [Rol]           NVARCHAR (50)   NULL,
+    [Room]          NVARCHAR (50)   NULL,
+    [Salt]          VARBINARY (MAX) NULL,
+    [Avatar]        NVARCHAR (MAX)  NULL,
+    [FechaRegistro] DATETIME        NULL,
+    [FechaUpdate]   DATETIME        NULL,
+    [LastConnection]  DATETIME        NULL,
+    PRIMARY KEY CLUSTERED ([Id] ASC)
+);
+
+
+
+
+CREATE TABLE [dbo].[Mensaje] (
+    [IdMensaje]    INT            IDENTITY (1, 1) NOT NULL,
+    [Nombre]       NVARCHAR (255) NOT NULL,
+    [Texto]        NVARCHAR (MAX) NOT NULL,
+    [Rol]          NVARCHAR (255) NULL,
+    [FechaMensaje] DATETIME       NOT NULL,
+    [Id]           INT            NULL,
+    PRIMARY KEY CLUSTERED ([IdMensaje] ASC),
+    FOREIGN KEY ([Id]) REFERENCES [dbo].[Usuarios] ([Id])
+);
